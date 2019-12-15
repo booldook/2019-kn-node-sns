@@ -15,7 +15,7 @@ var flash = require('connect-flash');
 var { sequelize } = require('./models');
 
 var app = express();
-sequelize.sync({force: true});
+sequelize.sync();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

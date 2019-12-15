@@ -23,4 +23,5 @@ db.HashTag.belongsToMany(db.Post, {through: 'post_hashtag'});
 db.User.belongsToMany(db.User, {through: 'follow', foreignKey: 'following_id', as: 'followers'});
 db.User.belongsToMany(db.User, {through: 'follow', foreignKey: 'follower_id', as: 'followings'});
 
+
 module.exports = db;

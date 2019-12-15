@@ -6,7 +6,7 @@ const { User } = require('../models');
 router.post("/join", async(req, res, next) => {
 	let { email, userpw, username } = req.body;
 	try {
-		let result = await User.find({ where: {email} });
+		let result = await User.findOne({ where: {email} });
 		if(result) {
 			req.flash('joinError', '이미 존재하는 이메일입니다.');
 			res.redirect("/");
