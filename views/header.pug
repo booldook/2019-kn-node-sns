@@ -5,4 +5,28 @@
 	.bts
 		button.btn.btn-sm.btn-danger 로그아웃
 		button.btn.btn-sm.btn-primary 로그인
-		button.btn.btn-sm.btn-success 회원가입
+		button.btn.btn-sm.btn-success(data-toggle="modal" data-target="#joinModal") 회원가입
+
+#joinModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+	.modal-dialog(role="document")
+		.modal-content
+			form(name="joinForm" method="post" action="/user")
+				.modal-header
+					h5#exampleModalLabel.modal-title 회원가입
+					button.close(type="button" data-dismiss="modal" aria-label="Close")
+						span(aria-hidden="true") ×
+				.modal-body
+					div
+						.py-1 이메일: 
+						input.form-control(type="text" name="email" placeholder="이메일")
+					div
+						.py-1 패스워드: 
+						input.form-control(type="password" name="userpw")
+					div
+						.py-1 이름(닉네임): 
+						input.form-control(type="text" name="username")
+					.py-1= joinError
+				.modal-footer
+					button.btn.btn-secondary(type="button" data-dismiss="modal") 닫기
+					button.btn.btn-primary(type="submit") 가입
+
