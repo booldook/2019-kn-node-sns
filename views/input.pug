@@ -1,0 +1,9 @@
+.input-wrap.border.rounded.p-3.mt-3
+	form(action="/post/" method="post" enctype="multipart/form-data")
+		div.p-2
+			textarea.w-100.border.rounded(name="comment" style="height: 150px; font-size: 16px; padding: 8px;")
+		div.p-2
+			input.form-control-file(type="file" name="img")
+		div.p-2
+			button.btn.btn-primary 저장
+		

@@ -20,5 +20,4 @@ module.exports = (sequelize, Sequelize) => {
 		collate: 'utf8_general_ci',
 		tableName: 'user'
 	});
-	console.log(sequelize, Sequelize);
 }
