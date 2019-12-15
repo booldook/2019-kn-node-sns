@@ -33,7 +33,11 @@ app.use(session({
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
-  store: new sessionStore()
+  cookie: {
+    httpOnly: true,
+    secure: false
+  }
+  /* store: new sessionStore() */
 }));
 passportConfig(passport);
 app.use(passport.initialize());

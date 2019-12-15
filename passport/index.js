@@ -6,7 +6,7 @@ module.exports = (passport) => {
 	});
 	passport.deserializeUser(async (id, done) => {
 		try {
-			let result = await User.find({
+			let result = await User.findOne({
 				where: { id },
 				include: [{
 					model: User,
