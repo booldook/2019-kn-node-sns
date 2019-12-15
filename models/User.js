@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-	sequelize.define('User', {
+	return sequelize.define('User', {
 		email: {
 			type: Sequelize.STRING(255),
 			allowNull: false,
@@ -20,4 +20,5 @@ module.exports = (sequelize, Sequelize) => {
 		collate: 'utf8_general_ci',
 		tableName: 'user'
 	});
+	console.log(sequelize, Sequelize);
 }

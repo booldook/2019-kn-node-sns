@@ -12,16 +12,15 @@ db.User = require('./User')(sequelize, Sequelize);
 db.Post = require('./Post')(sequelize, Sequelize);
 db.HashTag = require('./HashTag')(sequelize, Sequelize);
 
-
 // 1 대 다
 db.User.hasMany(db.Post);
 db.Post.belongsTo(db.User);
 
 // 다 대 다
-db.Post.belongsMany(db.HashTag, {through: 'post_hashtag'});
-db.HashTag.belongsMany(db.Post, {through: 'post_hashtag'});
+db.Post.belongsToMany(db.HashTag, {through: 'post_hashtag'});
+db.HashTag.belongsToMany(db.Post, {through: 'post_hashtag'});
 
-db.User.belongsMany(db.User, {through: 'follow', foreignKey: 'following_id', as: 'followers'});
-db.User.belongsMany(db.User, {through: 'follow', foreignKey: 'follower_id', as: 'followings'});
+db.User.belongsToMany(db.User, {through: 'follow', foreignKey: 'following_id', as: 'followers'});
+db.User.belongsToMany(db.User, {through: 'follow', foreignKey: 'follower_id', as: 'followings'});
 
 module.exports = db;

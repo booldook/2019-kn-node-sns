@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-	sequelize.define('HashTag', {
+	return sequelize.define('HashTag', {
 		title: {
 			type: Sequelize.STRING(50),
 			allowNull: false,
