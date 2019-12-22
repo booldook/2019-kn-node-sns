@@ -30,7 +30,7 @@ router.post("/join", isLogout, async(req, res, next) => {
 	}
 });
 
-router.post("/login", isLogin, (req, res, next) => {
+router.post("/login", isLogout, (req, res, next) => {
 	const passportCb = (error, user, info) => {
 		console.log("passport");
 		if(error) {
