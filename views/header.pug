@@ -5,6 +5,7 @@
 		div.p-2= `팔로잉: ${user.followings.length}`
 	.bts
 		if user
+			input(type="hidden" name="userid" id="userid" value=`${user.id}`)
 			button.btn.btn-sm.btn-danger(onclick="location.href='/auth/logout';") 로그아웃
 		else
 			button.btn.btn-sm.btn-primary(data-toggle="modal" data-target="#loginModal") 로그인

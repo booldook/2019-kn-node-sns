@@ -7,7 +7,24 @@ ul.list-wrap.mt-3
 		li.border.rounded.my-2.p-3
 			div.p-2.border-bottom 
 				span= list.User.username
-				button.btn.btn-sm.btn-primary 팔로우
+				if user
+					button.btn.btn-sm.btn-primary(onclick=`followFn(${list.User.id})`) 팔로우
 			div.comment.p-2= list.comment
 			.img.p-2
 				img(src=`${list.img}` style="max-width: 100%;")
+script.
+	function followFn(id) {
+		if($("#userid").val()) {
+			$.ajax({
+				url: "/user/follow/",
+				type: "post",
+				data: {
+					userid: $("#userid").val(),
+					follerid: id,
+				},
+				success: function(res) {
+					location.reload();
+				}
+			});
+		}
+	}
