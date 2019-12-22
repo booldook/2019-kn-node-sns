@@ -11,7 +11,6 @@ module.exports = (passport) => {
 			const user = await User.findOne({
 				where: {email}
 			});
-			console.log(user);
 			if(user) {
 				const result = await bcrypt.compare(userpw, user.userpw);
 				if(result) done(null, user)

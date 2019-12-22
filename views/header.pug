@@ -1,11 +1,14 @@
 .login-wrap.border.p-3.rounded
-	div.p-2(style="font-size: 18px; font-weight: bold;")= userName
-	div.p-2= `팔로워: ${followUsers}`
-	div.p-2= `팔로잉: ${followingUsers}`
+	if user
+		div.p-2(style="font-size: 18px; font-weight: bold;")= user.username
+		div.p-2= `팔로워: ${user.followers.length}`
+		div.p-2= `팔로잉: ${user.followings.length}`
 	.bts
-		button.btn.btn-sm.btn-danger 로그아웃
-		button.btn.btn-sm.btn-primary(data-toggle="modal" data-target="#loginModal") 로그인
-		button.btn.btn-sm.btn-success(data-toggle="modal" data-target="#joinModal") 회원가입
+		if user
+			button.btn.btn-sm.btn-danger(onclick="location.href='/auth/logout';") 로그아웃
+		else
+			button.btn.btn-sm.btn-primary(data-toggle="modal" data-target="#loginModal") 로그인
+			button.btn.btn-sm.btn-success(data-toggle="modal" data-target="#joinModal") 회원가입
 
 #joinModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
 	.modal-dialog(role="document")

@@ -50,4 +50,10 @@ router.post("/login", (req, res, next) => {
 	passport.authenticate('local', passportCb)(req, res, next)
 });
 
+router.get("/logout", (req, res, next) => {
+	req.logout();
+	req.session.destroy();
+	res.redirect('/');
+});
+
 module.exports = router;
