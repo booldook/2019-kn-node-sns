@@ -41,8 +41,23 @@ router.get("/tag", async (req, res, next) => {
 		});
 		if(result) {
 			try{
-				let postResult = await result.getPosts();
-				res.json(postResult);
+				let postResult = await result.getPosts({
+					include: [{
+						model: User,
+						attributes: ['id', 'username']
+					}]
+				}, {
+					order: [['id', 'DESC']]
+				});
+				for(let item of postResult) {
+					if(item.img) item.img = '/files/'+item.img.split("-")[0]+"/"+item.img;
+				};
+				res.render('index', { 
+					title: 'SNS',
+					user: req.user,
+					lists: postResult,
+					tag
+				});
 			}
 			catch(err) {
 				next(err);

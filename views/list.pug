@@ -1,5 +1,6 @@
+- if(!tag) tag = '';
 form.form-inline.mt-3(method="get" action="/post/tag")
-	input.form-control(name="tag" placeholder="태그를 검색하세요.")
+	input.form-control(name="tag" placeholder="태그를 검색하세요." value=`${tag}`)
 	button.btn.btn-success.ml-2 검색
 ul.list-wrap.mt-3
 	each list in lists
