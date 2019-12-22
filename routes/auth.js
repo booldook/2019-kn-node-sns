@@ -4,13 +4,11 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const { User } = require('../models');
 const { alertLoc } = require("../modules/util");
-const { isLogin, isNotLogin } = require('../passport/authValidate');
 
 router.post("/join", async(req, res, next) => {
 	let { email, userpw, username } = req.body;
 	try {
 		let result = await User.findOne({ where: {email} });
-		console.log(result);
 		if(result) {
 			res.send(alertLoc('이미 존재하는 이메일입니다.', '/'));
 		}
@@ -31,7 +29,7 @@ router.post("/join", async(req, res, next) => {
 });
 
 router.post("/login", (req, res, next) => {
-	passport.authenticate('local', (error, user, info) => {
+	const passportCb = (error, user, info) => {
 		console.log("passport");
 		if(error) {
 			console.error(error);
@@ -48,7 +46,8 @@ router.post("/login", (req, res, next) => {
 				}
 			});
 		}
-	})(req, res, next)
+	};
+	passport.authenticate('local', passportCb)(req, res, next)
 });
 
 module.exports = router;

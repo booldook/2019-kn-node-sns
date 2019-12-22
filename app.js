@@ -36,8 +36,8 @@ app.use(session({
   cookie: {
     httpOnly: true,
     secure: false
-  }
-  /* store: new sessionStore() */
+  },
+  store: new sessionStore()
 }));
 passportConfig(passport);
 app.use(passport.initialize());
