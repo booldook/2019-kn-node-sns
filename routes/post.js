@@ -33,4 +33,23 @@ router.post("/", upload.single('img'), async (req, res, next) => {
 	res.redirect("/");
 });
 
+router.get("/tag", async (req, res, next) => {
+	const tag = req.query.tag;
+	if(tag) {
+		let result = await HashTag.findOne({
+			where: {title: tag}
+		});
+		if(result) {
+			try{
+				let postResult = await result.getPosts();
+				res.json(postResult);
+			}
+			catch(err) {
+				next(err);
+			}
+		}
+	}
+	else res.redirect("/");
+});
+
 module.exports = router;
