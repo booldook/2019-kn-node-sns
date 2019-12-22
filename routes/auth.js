@@ -4,8 +4,10 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const { User } = require('../models');
 const { alertLoc } = require("../modules/util");
+const { isLogin, isLogout } = require("../passport/auth");
 
-router.post("/join", async(req, res, next) => {
+
+router.post("/join", isLogout, async(req, res, next) => {
 	let { email, userpw, username } = req.body;
 	try {
 		let result = await User.findOne({ where: {email} });
@@ -28,7 +30,7 @@ router.post("/join", async(req, res, next) => {
 	}
 });
 
-router.post("/login", (req, res, next) => {
+router.post("/login", isLogin, (req, res, next) => {
 	const passportCb = (error, user, info) => {
 		console.log("passport");
 		if(error) {
@@ -50,7 +52,7 @@ router.post("/login", (req, res, next) => {
 	passport.authenticate('local', passportCb)(req, res, next)
 });
 
-router.get("/logout", (req, res, next) => {
+router.get("/logout", isLogin, (req, res, next) => {
 	req.logout();
 	req.session.destroy();
 	res.redirect('/');
