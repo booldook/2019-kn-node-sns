@@ -23,7 +23,12 @@ script.
 					follerid: id,
 				},
 				success: function(res) {
+					//console.log(res);
 					location.reload();
+				},
+				error: function(xhr, status, error) {
+					console.error(xhr, status, error);
+					console.error(xhr.responseText);
 				}
 			});
 		}
