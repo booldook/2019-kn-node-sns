@@ -19,7 +19,7 @@ router.post("/", upload.single('img'), async (req, res, next) => {
 				where: {title: tag.substr(1).toLowerCase()}
 			});
 		}));
-		res.json(tagResult);
+		// res.json(tagResult);
 		/*
 		A.getB() - 관계조회
 		A.addB() - 관계저장
@@ -29,9 +29,8 @@ router.post("/", upload.single('img'), async (req, res, next) => {
 		let relResult = await postResult.addHashTag(tagResult.map((tag) => {
 			 return tag[0];
 		}));
-		console.log(relResult);
 	}
-	res.json(postResult);
+	res.redirect("/");
 });
 
 module.exports = router;

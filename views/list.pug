@@ -1,6 +1,9 @@
 ul.list-wrap.mt-3
-	li.border.rounded.my-2.p-3
-		div.p-2.border-bottom 
-			span= `${userName}`
-			button.btn.btn-sm.btn-primary 팔로우
-		div.comment.p-2 포스팅입니다.
+	each list in lists
+		li.border.rounded.my-2.p-3
+			div.p-2.border-bottom 
+				span= list.User.username
+				button.btn.btn-sm.btn-primary 팔로우
+			div.comment.p-2= list.comment
+			.img.p-2
+				img(src=`${list.img}` style="max-width: 100%;")
