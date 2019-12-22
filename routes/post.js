@@ -15,19 +15,21 @@ router.post("/", upload.single('img'), async (req, res, next) => {
 	// tags = ['#트와이스', '#걸그룹', '#girlGroup'];
 	if(tags) {
 		let tagResult = await Promise.all(tags.map((tag) => {
-			HashTag.findOrCreate({
+			return HashTag.findOrCreate({
 				where: {title: tag.substr(1).toLowerCase()}
 			});
 		}));
+		res.json(tagResult);
 		/*
 		A.getB() - 관계조회
 		A.addB() - 관계저장
 		A.setB() - 관계수정
 		A.removeB() - 관계삭제
 		*/
-		let relResult = await postResult.addHashTags(tagResult.map((tag) => {
+		let relResult = await postResult.addHashTag(tagResult.map((tag) => {
 			 return tag[0];
 		}));
+		console.log(relResult);
 	}
 	res.json(postResult);
 });
